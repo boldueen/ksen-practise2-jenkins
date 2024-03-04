@@ -33,18 +33,8 @@ pipeline {
 
         success {
             echo 'YEAH IM COOL'
+            archiveArtifacts artifacts: './main', fingerprint: true
+            junit './main'
         }
     }
 }
-
-
-// def init_rust() {
-//     echo 'installing rust...'
-//     sh """
-//     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-//     source $HOME/.cargo/env
-//     export PATH=$HOME/.cargo/bin:$PATH
-//     rustc --version
-    
-//     """
-// }
