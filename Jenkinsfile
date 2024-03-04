@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'rust:latest' }
+    }
 
     stages {
         stage("test"){
@@ -34,7 +36,6 @@ pipeline {
         success {
             echo 'YEAH IM COOL'
             archiveArtifacts artifacts: 'main', fingerprint: true
-            junit 'main'
         }
     }
 }
