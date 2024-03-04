@@ -33,8 +33,8 @@ pipeline {
 
         success {
             echo 'YEAH IM COOL'
-            archiveArtifacts artifacts: './main', fingerprint: true
-            junit './main'
+            archiveArtifacts artifacts: 'main', fingerprint: true
+            junit 'main'
         }
     }
 }
