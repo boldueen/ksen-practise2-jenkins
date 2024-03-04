@@ -2,10 +2,37 @@ pipeline {
     agent any
 
     stages {
-        stage("build"){
+        stage("test"){
             steps {
                 echo 'building an app'
             }
         }
+        stage("deploy"){
+            steps {
+                init_rust()
+                echo 'building an app'
+                sh 'rustc src/main.rs'
+                sh './main'
+            }
+        }
+
+
     }   
+    post {
+
+        success {
+
+        }
+    }
+}
+
+
+def init_rust() {
+    echo 'installing rust...'
+    sh """
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source $HOME/.cargo/env
+    export PATH=$HOME/.cargo/bin:$PATH
+    rustc --version
+    """
 }
