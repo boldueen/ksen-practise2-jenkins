@@ -18,6 +18,7 @@ pipeline {
                 rustc --version
 
                 echo 'building an app'
+                cat ./src/main.rs
                 sh 'rustc ./src/main.rs'
                 sh './main'
                 """
